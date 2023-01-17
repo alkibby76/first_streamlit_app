@@ -31,3 +31,9 @@ streamlit.text(fruityvice_response)
 streamlit.header("Fruityvice Fruit Advice!")
 
 # Display the table on the page.
+
+
+# Put the json response into a variable
+fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
+# show the response in a python dataframe
+streamlit.dataframe(fruityvice_normalized)
