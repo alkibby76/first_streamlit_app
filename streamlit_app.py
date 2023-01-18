@@ -2,7 +2,7 @@ import streamlit
 import pandas
 import requests
 import snowflake.connector 
-from urllib.error import URLerror
+from urllib.error import URLError
 
 streamlit.title('My Parents New Healthy Diner') 
 streamlit.header('🍈Breakfast Favorites🍏') 
@@ -12,9 +12,6 @@ streamlit.text('🥚Hard Boiled Free-Range Egg')
 streamlit.text('🥑Avocado Toast') 
 
 streamlit.header('🍉🍇🍍🍒🍑 Build Your Own Fruit Smoothie') 
-
-
-
 
 my_fruit_list = pandas.read_csv("https://uni-lab-files.s3.us-west-2.amazonaws.com/dabw/fruit_macros.txt")
 #streamlit.dataframe(my_fruit_list)
@@ -27,7 +24,6 @@ fruits_to_show = my_fruit_list.loc[fruits_selected]
 
 streamlit.dataframe(fruits_to_show)
 
-
 streamlit.header("Fruityvice Fruit Advice!")
 try:
      fruit_choice = streamlit.text_input('What fruit would you like information about?')
@@ -36,7 +32,6 @@ try:
      else:
            fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
            fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
-            # show the response in a python dataframe
            streamlit.dataframe(fruityvice_normalized)
 
 except URLError as e:
